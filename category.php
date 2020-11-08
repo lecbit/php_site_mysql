@@ -3,20 +3,22 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-include_once 'app/header.php';
+require_once 'app/header.php';
 ?>
 <div class="container">
  <div class="row">
   <div class="col-md-9">
    <div class="page-header">
-    <h1>Все записи:</h1>
+    <h1>Название категории:</h1>
    </div>
    <?php
-      $posts = get_posts();
+    $category_id = $_GET['id'];
+    $posts = get_posts_by_category($category_id);
    ?>
-   <?php
-      foreach($posts as $post) : 
-      ?>
+   <pre>
+    <?php echo var_dump($posts);?>
+   </pre>
+   <?php foreach($posts as $post) : ?>
    <div class="row">
     <div class="col-md-3">
      <a href="#" class="thumbnail">
