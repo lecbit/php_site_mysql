@@ -8,16 +8,15 @@ require_once 'app/header.php';
 <div class="container">
  <div class="row">
   <div class="col-md-9">
-   <div class="page-header">
-    <h1>Название категории:</h1>
-   </div>
-   <?php
+  <?php
     $category_id = $_GET['id'];
     $posts = get_posts_by_category($category_id);
+    
    ?>
-   <pre>
-    <?php echo var_dump($posts);?>
-   </pre>
+   <div class="page-header">
+    <h1><?php echo get_category_title($category_id);?>:</h1>
+   </div>
+   
    <?php foreach($posts as $post) : ?>
    <div class="row">
     <div class="col-md-3">

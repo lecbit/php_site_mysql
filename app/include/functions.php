@@ -74,12 +74,24 @@ function get_posts_by_category($category_id)
 {
     global $link;
 
-    $category_id = mysqli_real_escape_string($category_id);
+    $category_id = mysqli_real_escape_string($link, $category_id);
 
-    $sql = 'SELECT * FROM posts WHERE id = "'.$category_id.'"';
+    $sql = 'SELECT * FROM posts WHERE category_id = "'.$category_id.'"';
 
     $result = mysqli_query($link, $sql);
     $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $posts;
 }
+
+function get_category_title($category_id)
+{
+    global $link;
+    $category_id = mysqli_real_escape_string($link, $category_id);
+    $sql = 'SELECT title FROM categories WHERE id = "'.$category_id.'"';
+
+    $result = mysqli_query($link, $sql);
+    $category = mysqli_fetch_assoc($result);
+    return $category['title'];
+}
+
 ?>

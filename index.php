@@ -4,6 +4,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 include_once 'app/header.php';
+
+$IntlDateFormatter = datefmt_create(
+   'ru_RU',
+   IntlDateFormatter::FULL,
+   IntlDateFormatter::FULL,
+   'Europe/Moscow',
+   IntlDateFormatter::GREGORIAN,
+   'd MMMM yyyy, EEEE H:mm'
+);
 ?>
 <div class="container">
  <div class="row">
@@ -32,7 +41,9 @@ include_once 'app/header.php';
      <br/>
      <ul class="list-inline">
       <li><i class="glyphicon glyphicon-list"></i><a href="#"> Категория: </a> | </li>
-      <li><i class="glyphicon glyphicon-calendar"></i> Sept 16th. 2012 | </li>
+      <li><i class="glyphicon glyphicon-calendar"></i> <br>
+      <?php echo datefmt_format($IntlDateFormatter, $post['datetime'])?>
+      </li>
       <li><i class="glyphicon glyphicon-comment"></i> by <a href="#">3 comments</a> | </li>
      </ul>
     </div>
