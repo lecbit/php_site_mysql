@@ -8,10 +8,10 @@ function get_categories()
     return $categories;
 }
 
-function get_posts()
+function get_posts($limit,$offset)
 {
     global $link;
-    $sql = "SELECT * FROM posts";
+    $sql = "SELECT * FROM posts LIMIT $limit OFFSET $offset";
     $result = mysqli_query($link, $sql);
     $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $posts;
